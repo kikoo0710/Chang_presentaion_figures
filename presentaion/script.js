@@ -1,15 +1,39 @@
-const marketData = [
-  { year: '2021', value: 987.0, type: 'historical' },
-  { year: '2022', value: 1172.0, type: 'historical' },
-  { year: '2023', value: 1378.0, type: 'historical' },
-  { year: '2024', value: 1615.4, type: 'historical' },
-  { year: '2025', value: 2016.0, type: 'forecast' },
-  { year: '2026', value: 2516.0, type: 'forecast' },
-  { year: '2027', value: 3140.0, type: 'forecast' },
-  { year: '2028', value: 3919.0, type: 'forecast' },
-  { year: '2029', value: 4891.0, type: 'forecast' },
-  { year: '2030', value: 5930.2, type: 'forecast' }
-];
+const knownMarketValues = {
+  2021: 987.0,
+  2024: 1615.4,
+  2030: 5930.2
+};
+
+const forecastCagr = 0.248;
+
+const compoundInterpolate = (startYear, startValue, endYear, endValue, year) => {
+  const growthRate = (endValue / startValue) ** (1 / (endYear - startYear)) - 1;
+  return startValue * (1 + growthRate) ** (year - startYear);
+};
+
+const forecastBackcast = (targetYear, targetValue, cagr, year) =>
+  targetValue / (1 + cagr) ** (targetYear - year);
+
+const marketData = Array.from({ length: 10 }, (_, index) => {
+  const year = 2021 + index;
+  const isKnown = Object.hasOwn(knownMarketValues, year);
+  let value = knownMarketValues[year];
+
+  if (!value && year < 2024) {
+    value = compoundInterpolate(2021, knownMarketValues[2021], 2024, knownMarketValues[2024], year);
+  }
+
+  if (!value && year > 2024) {
+    value = forecastBackcast(2030, knownMarketValues[2030], forecastCagr, year);
+  }
+
+  return {
+    year: String(year),
+    value,
+    type: year <= 2024 ? 'historical' : 'forecast',
+    isKnown
+  };
+});
 
 const maxMarketValue = 6000;
 
@@ -44,7 +68,7 @@ const marketBars = document.querySelector('#market-bars');
 
 marketData.forEach((item) => {
   const group = document.createElement('div');
-  group.className = 'report-bar-group';
+  group.className = `report-bar-group ${item.isKnown ? 'known' : 'estimated'}`;
 
   const height = `${(item.value / maxMarketValue) * 100}%`;
 

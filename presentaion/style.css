@@ -238,6 +238,14 @@ h2 {
   background: #86b72c;
 }
 
+.report-bar-group.estimated .report-bar {
+  opacity: 0.78;
+}
+
+.report-bar-group.known .report-bar {
+  opacity: 1;
+}
+
 .report-year {
   position: absolute;
   bottom: -24px;
