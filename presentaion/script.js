@@ -89,24 +89,14 @@ marketData.forEach((item) => {
 
 const growthLine = document.querySelector('#cagr-growth-line');
 
-const pointsToCurve = (points) => {
+const pointsToArrowPath = (points) => {
   if (points.length < 2) {
     return '';
   }
 
-  const commands = [`M ${points[0].x.toFixed(2)} ${points[0].y.toFixed(2)}`];
-
-  for (let index = 0; index < points.length - 1; index += 1) {
-    const current = points[index];
-    const next = points[index + 1];
-    const controlX = (current.x + next.x) / 2;
-
-    commands.push(
-      `C ${controlX.toFixed(2)} ${current.y.toFixed(2)}, ${controlX.toFixed(2)} ${next.y.toFixed(2)}, ${next.x.toFixed(2)} ${next.y.toFixed(2)}`
-    );
-  }
-
-  return commands.join(' ');
+  return points
+    .map((point, index) => `${index === 0 ? 'M' : 'L'} ${point.x.toFixed(2)} ${point.y.toFixed(2)}`)
+    .join(' ');
 };
 
 const cagrNote = document.querySelector('.cagr-note');
@@ -117,7 +107,7 @@ const updateGrowthCurve = () => {
     y: 100 - (item.value / maxMarketValue) * 100
   }));
 
-  growthLine.setAttribute('d', pointsToCurve(curvePoints));
+  growthLine.setAttribute('d', pointsToArrowPath(curvePoints));
 
   const arrowHeadPoint = curvePoints[curvePoints.length - 1];
   cagrNote.style.left = `${Math.max(arrowHeadPoint.x - 18, 0)}%`;

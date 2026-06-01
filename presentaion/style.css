@@ -294,7 +294,7 @@ h2 {
 .cagr-arrow path#cagr-growth-line {
   fill: none;
   stroke: #111827;
-  stroke-width: 0.95;
+  stroke-width: 3.2;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
