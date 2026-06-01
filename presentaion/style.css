@@ -364,6 +364,15 @@ h2 {
   text-align: center;
 }
 
+.chart-source {
+  grid-column: 2;
+  margin: 8px 0 0;
+  color: rgba(17, 24, 39, 0.62);
+  font-size: clamp(0.64rem, 1.35vw, 0.76rem);
+  font-weight: 800;
+  text-align: center;
+}
+
 .region-panel {
   padding-top: 40px;
 }
@@ -611,6 +620,10 @@ h2 {
   }
 
   .report-caption {
+    grid-column: 1 / -1;
+  }
+
+  .chart-source {
     grid-column: 1 / -1;
   }
 
