@@ -46,8 +46,8 @@ const regions = [
 ];
 
 const housingElevatorData = [
-  { label: 'Without elevator', value: 62, color: '#86b72c' },
-  { label: 'With elevator', value: 38, color: '#8f8f8f' }
+  { label: 'Without elevator', value: 42, color: '#86b72c' },
+  { label: 'With elevator', value: 58, color: '#8f8f8f' }
 ];
 
 const regionData = [
@@ -88,15 +88,48 @@ marketData.forEach((item) => {
 });
 
 const growthLine = document.querySelector('#cagr-growth-line');
-const growthPoints = marketData
-  .map((item, index) => {
-    const x = ((index + 0.5) / marketData.length) * 100;
-    const y = 100 - (item.value / maxMarketValue) * 100;
-    return `${x.toFixed(2)},${y.toFixed(2)}`;
-  })
-  .join(' ');
+const curvePoints = marketData.map((item, index) => ({
+  x: ((index + 0.5) / marketData.length) * 100,
+  y: 100 - (item.value / maxMarketValue) * 100
+}));
 
-growthLine.setAttribute('points', growthPoints);
+const lineToCurve = (points) => {
+  if (points.length < 2) {
+    return '';
+  }
+
+  const commands = [`M ${points[0].x.toFixed(2)} ${points[0].y.toFixed(2)}`];
+
+  for (let index = 0; index < points.length - 1; index += 1) {
+    const current = points[index];
+    const next = points[index + 1];
+    const previous = points[index - 1] || current;
+    const afterNext = points[index + 2] || next;
+
+    const controlOne = {
+      x: current.x + (next.x - previous.x) / 6,
+      y: current.y + (next.y - previous.y) / 6
+    };
+
+    const controlTwo = {
+      x: next.x - (afterNext.x - current.x) / 6,
+      y: next.y - (afterNext.y - current.y) / 6
+    };
+
+    commands.push(
+      `C ${controlOne.x.toFixed(2)} ${controlOne.y.toFixed(2)}, ${controlTwo.x.toFixed(2)} ${controlTwo.y.toFixed(2)}, ${next.x.toFixed(2)} ${next.y.toFixed(2)}`
+    );
+  }
+
+  return commands.join(' ');
+};
+
+growthLine.setAttribute('d', lineToCurve(curvePoints));
+
+const arrowHeadPoint = curvePoints[curvePoints.length - 1];
+const cagrNote = document.querySelector('.cagr-note');
+cagrNote.style.left = `${Math.max(arrowHeadPoint.x - 20, 0)}%`;
+cagrNote.style.top = `${Math.max(arrowHeadPoint.y - 8, 2)}%`;
 
 const regionChart = document.querySelector('#region-chart');
 
