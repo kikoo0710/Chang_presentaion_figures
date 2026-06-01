@@ -87,35 +87,9 @@ marketData.forEach((item) => {
   marketBars.appendChild(group);
 });
 
-const growthLine = document.querySelector('#cagr-growth-line');
-
-const pointsToArrowPath = (points) => {
-  if (points.length < 2) {
-    return '';
-  }
-
-  return points
-    .map((point, index) => `${index === 0 ? 'M' : 'L'} ${point.x.toFixed(2)} ${point.y.toFixed(2)}`)
-    .join(' ');
-};
-
 const cagrNote = document.querySelector('.cagr-note');
-
-const updateGrowthCurve = () => {
-  const curvePoints = marketData.map((item, index) => ({
-    x: ((index + 0.5) / marketData.length) * 100,
-    y: 100 - (item.value / maxMarketValue) * 100
-  }));
-
-  growthLine.setAttribute('d', pointsToArrowPath(curvePoints));
-
-  const arrowHeadPoint = curvePoints[curvePoints.length - 1];
-  cagrNote.style.left = `${Math.max(arrowHeadPoint.x - 18, 0)}%`;
-  cagrNote.style.top = `${Math.max(arrowHeadPoint.y - 9, 2)}%`;
-};
-
-requestAnimationFrame(updateGrowthCurve);
-window.addEventListener('resize', updateGrowthCurve);
+cagrNote.style.left = '76%';
+cagrNote.style.top = '3%';
 
 const regionChart = document.querySelector('#region-chart');
 
