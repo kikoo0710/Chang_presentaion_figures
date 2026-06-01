@@ -164,11 +164,11 @@ h2 {
 .report-chart {
   position: relative;
   display: grid;
-  grid-template-columns: 74px 1fr;
+  grid-template-columns: 96px 1fr;
   grid-template-rows: auto auto auto;
-  gap: 0 18px;
+  gap: 0 20px;
   margin-top: 38px;
-  padding: 48px clamp(18px, 4vw, 56px) 30px 22px;
+  padding: 52px clamp(22px, 4vw, 60px) 28px 26px;
   color: #111827;
   background: #f6f7f5;
   border-radius: 6px;
@@ -177,8 +177,8 @@ h2 {
 
 .axis-title {
   position: absolute;
-  left: 17px;
-  top: 48%;
+  left: 24px;
+  top: 47%;
   color: #111827;
   font-size: 0.72rem;
   font-weight: 800;
@@ -193,9 +193,14 @@ h2 {
   grid-template-rows: repeat(5, 1fr);
   height: 430px;
   padding-top: 3px;
+  padding-left: 34px;
   color: #111827;
   font-size: clamp(0.68rem, 1.5vw, 0.86rem);
   font-weight: 700;
+}
+
+.report-y-axis span {
+  line-height: 1;
 }
 
 .report-y-axis span:last-child {
@@ -208,6 +213,7 @@ h2 {
   grid-column: 2;
   height: 430px;
   border-bottom: 2px solid #111827;
+  overflow: visible;
 }
 
 .report-bars {
@@ -273,14 +279,14 @@ h2 {
 
 .cagr-arrow {
   position: absolute;
-  inset: 14% 6% 18% 22%;
+  inset: 0;
   z-index: 2;
   pointer-events: none;
 }
 
 .cagr-arrow line {
   stroke: #111827;
-  stroke-width: 0.75;
+  stroke-width: 0.85;
 }
 
 .cagr-arrow path {
@@ -289,8 +295,8 @@ h2 {
 
 .cagr-note {
   position: absolute;
-  left: 38%;
-  top: 31%;
+  left: 45%;
+  top: 32%;
   z-index: 3;
   color: #111827;
   font-size: clamp(0.72rem, 1.55vw, 0.94rem);
@@ -304,7 +310,7 @@ h2 {
   display: flex;
   justify-content: center;
   gap: 28px;
-  margin-top: 44px;
+  margin-top: 38px;
   color: #111827;
   font-size: clamp(0.68rem, 1.55vw, 0.82rem);
   font-weight: 800;
@@ -332,7 +338,8 @@ h2 {
 
 .report-caption {
   grid-column: 2;
-  margin: 12px 0 0;
+  margin: 16px auto 0;
+  max-width: 780px;
   color: #111827;
   font-size: clamp(0.7rem, 1.55vw, 0.84rem);
   font-weight: 700;
@@ -419,6 +426,105 @@ h2 {
   text-align: center;
 }
 
+.housing-panel {
+  margin-top: 28px;
+}
+
+.housing-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) 1.1fr;
+  align-items: center;
+  gap: clamp(26px, 5vw, 64px);
+  margin-top: 42px;
+}
+
+.donut-chart {
+  position: relative;
+  width: min(100%, 360px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: conic-gradient(#86b72c 0 62%, #8f8f8f 62% 100%);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.28);
+}
+
+.donut-chart::before {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #151f31, #0a0f19);
+  box-shadow: inset 0 0 0 1px rgba(179, 206, 236, 0.14);
+}
+
+.donut-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  z-index: 1;
+}
+
+.donut-center strong {
+  color: var(--text);
+  font-size: clamp(2.6rem, 6vw, 4.3rem);
+  line-height: 1;
+}
+
+.donut-center span {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.housing-copy {
+  min-width: 0;
+}
+
+.housing-lead {
+  margin: 0;
+  color: #d8e4f2;
+  font-size: clamp(0.98rem, 2vw, 1.12rem);
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.housing-stats {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.housing-stat {
+  display: grid;
+  grid-template-columns: 16px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(179, 206, 236, 0.13);
+  border-radius: 8px;
+}
+
+.housing-stat i {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.housing-stat span {
+  color: #d8e4f2;
+  font-weight: 800;
+}
+
+.housing-stat strong {
+  color: var(--text);
+  font-size: 1.12rem;
+}
+
 @media (max-width: 720px) {
   .page-shell {
     width: min(100% - 20px, 1120px);
@@ -443,19 +549,23 @@ h2 {
   }
 
   .report-chart {
-    grid-template-columns: 48px 1fr;
-    gap: 0 10px;
-    padding: 34px 12px 24px 8px;
+    grid-template-columns: 62px 1fr;
+    gap: 0 8px;
+    padding: 34px 10px 24px 8px;
   }
 
   .axis-title {
-    left: 8px;
+    left: 10px;
     font-size: 0.62rem;
   }
 
   .report-y-axis,
   .report-plot {
     height: 330px;
+  }
+
+  .report-y-axis {
+    padding-left: 24px;
   }
 
   .report-bars {
@@ -468,12 +578,12 @@ h2 {
   }
 
   .cagr-note {
-    left: 34%;
-    top: 28%;
+    left: 38%;
+    top: 30%;
   }
 
   .cagr-arrow {
-    inset: 13% 3% 22% 18%;
+    inset: 0;
   }
 
   .report-legend {
@@ -484,6 +594,14 @@ h2 {
 
   .report-caption {
     grid-column: 1 / -1;
+  }
+
+  .housing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .donut-chart {
+    width: min(100%, 300px);
   }
 
   .region-row {

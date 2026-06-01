@@ -45,6 +45,11 @@ const regions = [
   { name: 'North America', color: 'var(--violet)' }
 ];
 
+const housingElevatorData = [
+  { label: 'Without elevator', value: 62, color: '#86b72c' },
+  { label: 'With elevator', value: 38, color: '#8f8f8f' }
+];
+
 const regionData = [
   {
     year: '2030',
@@ -115,4 +120,17 @@ regions.forEach((region) => {
     <span>${region.name}</span>
   `;
   legend.appendChild(item);
+});
+
+const housingStats = document.querySelector('#housing-stats');
+
+housingElevatorData.forEach((item) => {
+  const row = document.createElement('div');
+  row.className = 'housing-stat';
+  row.innerHTML = `
+    <i style="background: ${item.color};"></i>
+    <span>${item.label}</span>
+    <strong>${item.value}%</strong>
+  `;
+  housingStats.appendChild(row);
 });
