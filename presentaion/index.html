@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Market Size Graph</title>
+    <title>Autonomous Last-Mile Delivery Market Outlook</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -11,10 +11,32 @@
   </head>
   <body>
     <main class="page-shell">
+      <section class="hero">
+        <p class="eyebrow">Market Intelligence Dashboard</p>
+        <h1>Autonomous Last-Mile Delivery Market Outlook</h1>
+        <p class="hero-copy">Global revenue forecast and regional composition overview, expressed in USD millions.</p>
+        <div class="kpi-grid" aria-label="Key market indicators">
+          <div class="kpi-card">
+            <span>2024 Market Size</span>
+            <strong>$1,615.4M</strong>
+          </div>
+          <div class="kpi-card">
+            <span>2030 Forecast</span>
+            <strong>$5,930.2M</strong>
+          </div>
+          <div class="kpi-card">
+            <span>Forecast CAGR</span>
+            <strong>24.8%</strong>
+          </div>
+        </div>
+      </section>
+
       <section class="chart-panel" aria-labelledby="market-title">
         <div class="panel-heading">
-          <p class="eyebrow">Global Autonomous Last Mile Delivery</p>
-          <h1 id="market-title">Market Size</h1>
+          <div>
+            <p class="section-kicker">Revenue Forecast</p>
+            <h2 id="market-title">Global Market Size Projection</h2>
+          </div>
           <div class="cagr-badge" aria-label="CAGR 2025 to 2030 is 24.8 percent">
             <span>CAGR, 2025-2030</span>
             <span aria-hidden="true">&rarr;</span>
@@ -39,9 +61,15 @@
       </section>
 
       <section class="chart-panel region-panel" aria-labelledby="region-title">
-        <h2 id="region-title">Global Autonomous Last Mile Delivery Market Size, By Region</h2>
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">Regional Breakdown</p>
+            <h2 id="region-title">Market Revenue Composition by Region</h2>
+          </div>
+        </div>
         <div class="region-chart" id="region-chart" aria-label="Regional stacked bars for 2024 and 2030"></div>
         <div class="legend" id="legend" aria-label="Region color legend"></div>
+        <p class="source-note">Figures shown in USD millions. Regional shares are visualized to match the source chart composition.</p>
       </section>
     </main>
 
