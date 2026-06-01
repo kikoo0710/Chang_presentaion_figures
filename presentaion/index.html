@@ -56,11 +56,11 @@
           <div class="report-plot">
             <svg class="cagr-arrow" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
               <defs>
-                <marker id="arrowhead" markerWidth="7" markerHeight="7" refX="5.6" refY="3.5" orient="auto">
-                  <path d="M0,0 L7,3.5 L0,7 Z"></path>
+                <marker id="arrowhead" markerWidth="4.5" markerHeight="4.5" refX="3.6" refY="2.25" orient="auto">
+                  <path d="M0,0 L4.5,2.25 L0,4.5 Z"></path>
                 </marker>
               </defs>
-              <line x1="44" y1="78" x2="92" y2="9" marker-end="url(#arrowhead)"></line>
+              <polyline id="cagr-growth-line" marker-end="url(#arrowhead)"></polyline>
             </svg>
             <div class="cagr-note">~24.8% CAGR<br>(2025-2030)</div>
             <div class="report-bars" id="market-bars"></div>

@@ -76,6 +76,7 @@ marketData.forEach((item) => {
   group.className = `report-bar-group ${item.isKnown ? 'known' : 'estimated'}`;
 
   const height = `${(item.value / maxMarketValue) * 100}%`;
+  group.style.setProperty('--bar-height', height);
 
   group.innerHTML = `
     <div class="report-value">${formatMoney(item.value)}</div>
@@ -85,6 +86,17 @@ marketData.forEach((item) => {
 
   marketBars.appendChild(group);
 });
+
+const growthLine = document.querySelector('#cagr-growth-line');
+const growthPoints = marketData
+  .map((item, index) => {
+    const x = ((index + 0.5) / marketData.length) * 100;
+    const y = 100 - (item.value / maxMarketValue) * 100;
+    return `${x.toFixed(2)},${y.toFixed(2)}`;
+  })
+  .join(' ');
+
+growthLine.setAttribute('points', growthPoints);
 
 const regionChart = document.querySelector('#region-chart');
 
