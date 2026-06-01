@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Autonomous Last-Mile Delivery Market Outlook</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero">
+        <p class="eyebrow">Market Intelligence Dashboard</p>
+        <h1>Autonomous Last-Mile Delivery Market Outlook</h1>
+        <p class="hero-copy">Global revenue forecast and regional composition overview, expressed in USD millions.</p>
+        <div class="kpi-grid" aria-label="Key market indicators">
+          <div class="kpi-card">
+            <span>2024 Market Size</span>
+            <strong>$1,615.4M</strong>
+          </div>
+          <div class="kpi-card">
+            <span>2030 Forecast</span>
+            <strong>$5,930.2M</strong>
+          </div>
+          <div class="kpi-card">
+            <span>Forecast CAGR</span>
+            <strong>24.8%</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="chart-panel report-panel" aria-labelledby="market-title">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">Revenue Forecast</p>
+            <h2 id="market-title">Autonomous Last-Mile Delivery Market Forecast</h2>
+          </div>
+          <div class="cagr-badge" aria-label="CAGR 2025 to 2030 is 24.8 percent">
+            <span>CAGR, 2025-2030</span>
+            <span aria-hidden="true">&rarr;</span>
+            <strong>24.8%</strong>
+          </div>
+        </div>
+
+        <div class="report-chart" role="img" aria-label="Autonomous last-mile delivery market forecast from 2021 to 2030, with 24.8 percent CAGR from 2025 to 2030.">
+          <div class="axis-title">($ Millions)</div>
+          <div class="report-y-axis" aria-hidden="true">
+            <span>6,000</span>
+            <span>4,500</span>
+            <span>3,000</span>
+            <span>1,500</span>
+            <span>0</span>
+          </div>
+          <div class="report-plot">
+            <svg class="cagr-arrow" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <marker id="arrowhead" markerWidth="7" markerHeight="7" refX="5.6" refY="3.5" orient="auto">
+                  <path d="M0,0 L7,3.5 L0,7 Z"></path>
+                </marker>
+              </defs>
+              <line x1="34" y1="72" x2="88" y2="18" marker-end="url(#arrowhead)"></line>
+            </svg>
+            <div class="cagr-note">~24.8% CAGR<br>(2025-2030)</div>
+            <div class="report-bars" id="market-bars"></div>
+          </div>
+          <div class="report-legend" aria-label="Market forecast legend">
+            <span><i class="legend-green"></i>Historical Market Size</span>
+            <span><i class="legend-gray"></i>Forecast Market Size</span>
+          </div>
+          <p class="report-caption">Global autonomous last-mile delivery market revenue, 2021-2030</p>
+        </div>
+      </section>
+
+      <section class="chart-panel region-panel" aria-labelledby="region-title">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">Regional Breakdown</p>
+            <h2 id="region-title">Market Revenue Composition by Region</h2>
+          </div>
+        </div>
+        <div class="region-chart" id="region-chart" aria-label="Regional stacked bars for 2024 and 2030"></div>
+        <div class="legend" id="legend" aria-label="Region color legend"></div>
+        <p class="source-note">Figures shown in USD millions. Regional shares are visualized to match the source chart composition.</p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
