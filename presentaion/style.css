@@ -4,6 +4,7 @@
   --panel-strong: #151f31;
   --text: #f4f7fb;
   --muted: #9fb1c8;
+  --subtle: #6f829b;
   --grid: rgba(210, 224, 242, 0.13);
   --purple-deep: #32144d;
   --blue-pale: #c8e9f9;
@@ -20,8 +21,11 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 12% 10%, rgba(130, 196, 235, 0.12), transparent 30%),
-    linear-gradient(145deg, #080b12 0%, #101624 52%, #07090f 100%);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    radial-gradient(circle at 20% 0%, rgba(130, 196, 235, 0.13), transparent 28%),
+    linear-gradient(145deg, #070a11 0%, #101725 50%, #060811 100%);
+  background-size: 54px 54px, 54px 54px, auto, auto;
   color: var(--text);
   font-family: Inter, Arial, sans-serif;
 }
@@ -32,9 +36,64 @@ body {
   padding: 56px 0;
 }
 
+.hero {
+  padding: 18px 0 32px;
+}
+
+.hero h1 {
+  width: min(820px, 100%);
+  margin: 10px 0 0;
+  color: var(--text);
+  font-size: clamp(2.25rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.hero-copy {
+  width: min(680px, 100%);
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.kpi-card {
+  min-height: 116px;
+  padding: 22px;
+  background: rgba(16, 23, 37, 0.74);
+  border: 1px solid rgba(179, 206, 236, 0.15);
+  border-radius: 8px;
+}
+
+.kpi-card span {
+  display: block;
+  color: var(--subtle);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.kpi-card strong {
+  display: block;
+  margin-top: 12px;
+  color: var(--text);
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  line-height: 1;
+}
+
 .chart-panel {
-  background: linear-gradient(180deg, rgba(21, 31, 49, 0.95), rgba(11, 16, 27, 0.95));
-  border: 1px solid rgba(179, 206, 236, 0.16);
+  background:
+    linear-gradient(180deg, rgba(21, 31, 49, 0.96), rgba(10, 15, 25, 0.98));
+  border: 1px solid rgba(179, 206, 236, 0.18);
   border-radius: 8px;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
   padding: 36px clamp(18px, 4vw, 48px) 42px;
@@ -45,10 +104,11 @@ body {
 }
 
 .panel-heading {
-  display: grid;
-  justify-items: center;
-  gap: 12px;
-  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 22px;
+  text-align: left;
 }
 
 .eyebrow {
@@ -60,22 +120,21 @@ body {
   text-transform: uppercase;
 }
 
-h1,
 h2 {
   margin: 0;
   color: var(--text);
+  font-size: clamp(1.42rem, 2.8vw, 2.35rem);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: 0;
 }
 
-h1 {
-  font-size: clamp(2rem, 4vw, 3.6rem);
-}
-
-h2 {
-  text-align: center;
-  font-size: clamp(1.25rem, 2.5vw, 2rem);
+.section-kicker {
+  margin: 0 0 8px;
+  color: #82c4eb;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .cagr-badge {
@@ -85,6 +144,7 @@ h2 {
   color: #dfe9f6;
   font-size: clamp(0.88rem, 2vw, 1.05rem);
   font-weight: 800;
+  white-space: nowrap;
 }
 
 .cagr-badge strong {
@@ -101,7 +161,7 @@ h2 {
   display: grid;
   grid-template-columns: 92px 1fr;
   gap: 14px;
-  margin-top: 34px;
+  margin-top: 42px;
 }
 
 .y-axis {
@@ -186,6 +246,7 @@ h2 {
   border-radius: 6px 6px 2px 2px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
   flex: 0 0 auto;
+  outline: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .bar-label {
@@ -204,7 +265,7 @@ h2 {
 .region-chart {
   display: grid;
   gap: 44px;
-  margin-top: 52px;
+  margin-top: 48px;
 }
 
 .region-row {
@@ -238,6 +299,7 @@ h2 {
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.08);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  outline: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .segment {
@@ -268,6 +330,14 @@ h2 {
   border-radius: 4px;
 }
 
+.source-note {
+  margin: 28px 0 0;
+  color: var(--subtle);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 @media (max-width: 720px) {
   .page-shell {
     width: min(100% - 20px, 1120px);
@@ -276,6 +346,19 @@ h2 {
 
   .chart-panel {
     padding: 26px 14px 30px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-heading {
+    display: grid;
+    justify-items: start;
+  }
+
+  .cagr-badge {
+    white-space: normal;
   }
 
   .bar-chart-wrap {
