@@ -87,9 +87,54 @@ marketData.forEach((item) => {
   marketBars.appendChild(group);
 });
 
+const trendArrowLayer = document.querySelector('#trend-arrow-layer');
 const cagrNote = document.querySelector('.cagr-note');
-cagrNote.style.left = '76%';
-cagrNote.style.top = '3%';
+
+const renderTrendArrow = () => {
+  trendArrowLayer.innerHTML = '';
+
+  const plotRect = document.querySelector('.report-plot').getBoundingClientRect();
+  const points = [...document.querySelectorAll('.report-bar')].map((bar) => {
+    const rect = bar.getBoundingClientRect();
+    return {
+      x: rect.left + rect.width / 2 - plotRect.left,
+      y: rect.top - plotRect.top
+    };
+  });
+
+  points.slice(0, -1).forEach((point, index) => {
+    const next = points[index + 1];
+    const dx = next.x - point.x;
+    const dy = next.y - point.y;
+    const length = Math.hypot(dx, dy);
+    const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+    const segment = document.createElement('div');
+    segment.className = 'trend-segment';
+    segment.style.left = `${point.x}px`;
+    segment.style.top = `${point.y}px`;
+    segment.style.width = `${length}px`;
+    segment.style.transform = `rotate(${angle}deg)`;
+    trendArrowLayer.appendChild(segment);
+  });
+
+  const finalPoint = points[points.length - 1];
+  const previousPoint = points[points.length - 2];
+  const finalAngle = Math.atan2(finalPoint.y - previousPoint.y, finalPoint.x - previousPoint.x) * (180 / Math.PI);
+
+  const arrowHead = document.createElement('div');
+  arrowHead.className = 'trend-arrow-head';
+  arrowHead.style.left = `${finalPoint.x - 4}px`;
+  arrowHead.style.top = `${finalPoint.y}px`;
+  arrowHead.style.transform = `translateY(-50%) rotate(${finalAngle}deg)`;
+  trendArrowLayer.appendChild(arrowHead);
+
+  cagrNote.style.left = `${Math.max((finalPoint.x / plotRect.width) * 100 - 18, 58)}%`;
+  cagrNote.style.top = `${Math.max((finalPoint.y / plotRect.height) * 100 - 8, 2)}%`;
+};
+
+requestAnimationFrame(renderTrendArrow);
+window.addEventListener('resize', renderTrendArrow);
 
 const regionChart = document.querySelector('#region-chart');
 

@@ -284,24 +284,29 @@ h2 {
   opacity: 1;
 }
 
-.cagr-arrow {
+.trend-arrow-layer {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 4;
   pointer-events: none;
 }
 
-.cagr-arrow #cagr-growth-line {
-  fill: none;
-  stroke: #111827;
-  stroke-width: 3.2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
+.trend-segment {
+  position: absolute;
+  height: 0;
+  border-top: 5px solid #111827;
+  border-radius: 999px;
+  transform-origin: left center;
 }
 
-.cagr-arrow path {
-  fill: #111827;
+.trend-arrow-head {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  border-left: 22px solid #111827;
+  transform-origin: 4px center;
 }
 
 .cagr-note {
@@ -595,7 +600,7 @@ h2 {
     top: 2%;
   }
 
-  .cagr-arrow {
+  .trend-arrow-layer {
     inset: 0;
   }
 
